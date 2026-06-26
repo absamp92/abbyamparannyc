@@ -113,7 +113,7 @@
     font-family:var(--font-display);
     font-size:1.05rem;
     letter-spacing:.14em;
-    color:var(--ivory);
+    color:var(--charcoal);
     transition:color .4s var(--ease);
   }
   .nav.is-scrolled .nav-logo{ color:var(--charcoal); }
@@ -126,13 +126,13 @@
     font-size:.78rem;
     letter-spacing:.1em;
     text-transform:uppercase;
-    color:var(--ivory);
+    color:var(--charcoal);
     transition:color .4s var(--ease), opacity .2s;
   }
   .nav.is-scrolled .nav-links a{ color:var(--charcoal); }
   .nav-links a:hover{ opacity:.65; }
   .nav-cta{
-    border:1px solid var(--ivory) !important;
+    border:1px solid var(--charcoal) !important;
     padding:9px 20px;
     border-radius:999px;
   }
@@ -145,7 +145,7 @@
   }
   .nav-toggle span{
     width:24px; height:1px;
-    background:var(--ivory);
+    background:var(--charcoal);
     transition:background .4s var(--ease), transform .3s var(--ease), opacity .3s var(--ease);
   }
   .nav.is-scrolled .nav-toggle span{ background:var(--charcoal); }
@@ -178,23 +178,7 @@
     overflow:hidden;
     display:flex;
     align-items:flex-end;
-    color:var(--ivory);
-  }
-  .hero-slide{
-    position:absolute; inset:0;
-    background-size:cover;
-    background-position:center;
-    background-color:var(--charcoal);
-    filter:brightness(0.62) saturate(0.8) contrast(1.04);
-    opacity:0;
-    transition:opacity 1.6s var(--ease);
-  }
-  .hero-slide.is-active{ opacity:1; }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(36,31,27,0.38) 0%, rgba(36,31,27,0.32) 40%, rgba(36,31,27,0.84) 100%);
-    z-index:1;
+    color:var(--charcoal);
   }
   .hero-content{
     position:relative;
@@ -208,8 +192,7 @@
     text-transform:uppercase;
     line-height:1.9;
     margin-bottom:18px;
-    color:var(--ivory);
-    opacity:.92;
+    color:var(--rose-deep);
   }
   .hero-title{
     font-family:var(--font-display);
@@ -226,8 +209,7 @@
     font-size:clamp(1.05rem, 1.6vw, 1.4rem);
     max-width:540px;
     margin-bottom:36px;
-    color:var(--ivory);
-    opacity:.95;
+    color:var(--charcoal-soft);
   }
   .btn-row{ display:flex; gap:16px; flex-wrap:wrap; }
   .btn{
@@ -247,8 +229,6 @@
   .btn:hover{ transform:translateY(-2px); }
   .btn-fill{ background:var(--ivory); color:var(--charcoal); }
   .btn-fill:hover{ background:var(--rose); }
-  .btn-outline-light{ border:1px solid var(--line-light); color:var(--ivory); }
-  .btn-outline-light:hover{ border-color:var(--ivory); }
   .btn-outline-dark{ border:1px solid var(--line); color:var(--charcoal); }
   .btn-outline-dark:hover{ background:var(--charcoal); color:var(--ivory); border-color:var(--charcoal); }
   .btn-fill-dark{ background:var(--charcoal); color:var(--ivory); }
@@ -261,13 +241,13 @@
     font-size:.7rem;
     letter-spacing:.18em;
     text-transform:uppercase;
-    color:var(--ivory);
+    color:var(--charcoal-soft);
     display:flex; align-items:center; gap:10px;
   }
-  .scroll-cue .line{ width:1px; height:34px; background:var(--line-light); position:relative; overflow:hidden; }
+  .scroll-cue .line{ width:1px; height:34px; background:var(--line); position:relative; overflow:hidden; }
   .scroll-cue .line::after{
     content:""; position:absolute; top:-100%; left:0; width:100%; height:100%;
-    background:var(--ivory);
+    background:var(--charcoal);
     animation: scrollline 2.4s ease-in-out infinite;
   }
   @keyframes scrollline{ 0%{top:-100%;} 50%{top:0;} 100%{top:100%;} }
@@ -596,6 +576,11 @@
     display:none;
   }
   .form-confirm.show{ display:block; }
+  .form-error{
+    margin-top:14px; font-size:.85rem; color:var(--rose-deep);
+    display:none;
+  }
+  .form-error.show{ display:block; }
   @media (max-width:880px){
     .consult{ grid-template-columns:1fr; }
     .consult-media{ min-height:240px; }
@@ -699,21 +684,13 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <!-- REPLACE ME: swap these six background images for real editorial / behind-the-chair photography -->
-  <div class="hero-slide is-active" style="background-image:url('background1.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('background2.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('background3.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('background4.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('background5.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('background6.jpg')"></div>
-
   <div class="hero-content">
     <p class="hero-credit">Editorial Stylist &middot; Beauty Industry Professional &middot; Maria Nila Pro Team &middot; Hair Artist &middot; Brand Ambassador</p>
     <h1 class="hero-title">Abby Amparan</h1>
     <p class="hero-tagline">Creating beautiful, customized hair while helping people feel confident, empowered, and seen.</p>
     <div class="btn-row">
       <a href="#booking" class="btn btn-fill">Book Appointment</a>
-      <a href="#consultation" class="btn btn-outline-light">Request Consultation</a>
+      <a href="#consultation" class="btn btn-outline-dark">Request Consultation</a>
     </div>
   </div>
   <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
@@ -865,7 +842,8 @@
     <h2>Tell me about your hair goals.</h2>
     <p>Share a little about what you're hoping for and I'll follow up to find the right next step — whether that's a full transformation or a subtle refresh.</p>
 
-    <form id="consultForm">
+    <form id="consultForm" action="https://formspree.io/f/mgojkkzg" method="POST">
+      <input type="hidden" name="_subject" value="New Consultation Request - Abby Amparan Website">
       <div class="form-row-2">
         <div class="field">
           <label for="cf-name">Full Name</label>
@@ -885,8 +863,9 @@
         <textarea id="cf-comments" name="comments" rows="4"></textarea>
       </div>
       <button type="submit" class="btn btn-fill-dark">Send Request</button>
-      <p class="form-note">This opens your email app with a message pre-filled to Abby@abbyamparan.com. (For a one-click silent submit, this can be connected to a form service later.)</p>
-      <p class="form-confirm" id="formConfirm">Opening your email app now…</p>
+      <p class="form-note">I'll follow up by email or phone within 1-2 business days.</p>
+      <p class="form-confirm" id="formConfirm">Thank you! Your request has been sent - I'll be in touch soon.</p>
+      <p class="form-error" id="formError">Something went wrong sending your request. Please try again, or email Abby@abbyamparan.com directly.</p>
     </form>
   </div>
 </section>
@@ -963,17 +942,6 @@
     nav.classList.remove('menu-open');
   }));
 
-  // Hero carousel
-  const slides = document.querySelectorAll('.hero-slide');
-  if (slides.length > 1) {
-    let i = 0;
-    setInterval(() => {
-      slides[i].classList.remove('is-active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('is-active');
-    }, 5500);
-  }
-
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -990,24 +958,33 @@
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  // Consultation form — mailto fallback (no backend required to demo)
+  // Consultation form - submits to Formspree via fetch (no page navigation)
   const form = document.getElementById('consultForm');
   const confirmMsg = document.getElementById('formConfirm');
-  form.addEventListener('submit', (e) => {
+  const errorMsg = document.getElementById('formError');
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('cf-name').value;
-    const phone = document.getElementById('cf-phone').value;
-    const email = document.getElementById('cf-email').value;
-    const comments = document.getElementById('cf-comments').value;
-    const subject = encodeURIComponent('Consultation Request — ' + name);
-    const body = encodeURIComponent(
-      'Name: ' + name + '\n' +
-      'Phone: ' + phone + '\n' +
-      'Email: ' + email + '\n\n' +
-      'Hair goals / comments:\n' + comments
-    );
-    confirmMsg.classList.add('show');
-    window.location.href = 'mailto:Abby@abbyamparan.com?subject=' + subject + '&body=' + body;
+    confirmMsg.classList.remove('show');
+    errorMsg.classList.remove('show');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        confirmMsg.classList.add('show');
+        form.reset();
+      } else {
+        errorMsg.classList.add('show');
+      }
+    } catch (err) {
+      errorMsg.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 
   // Portfolio lightbox \x97 click a grid image to view it larger
