@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
 <!--
-  ABBY AMPARAN — homepage prototype
+  ABBY AMPARAN â€” homepage prototype
   ---------------------------------
   Things to swap before this goes live (search for "REPLACE ME"):
-  1. Hero, about, and portfolio images — currently placeholder stock photography.
-  2. Vagaro booking links — currently point to the generic Vagaro homepage.
-  3. Consultation form — currently opens the visitor's email client with a
+  1. Hero, about, and portfolio images â€” currently placeholder stock photography.
+  2. Vagaro booking links â€” currently point to the generic Vagaro homepage.
+  3. Consultation form â€” currently opens the visitor's email client with a
      pre-filled message (no server required). For silent, no-click-away
      submission, connect a form service (e.g. Formspree, Web3Forms) and
      swap the JS submit handler for a fetch() POST.
-  4. Instagram feed — true auto-sync needs an Instagram Business account +
+  4. Instagram feed â€” true auto-sync needs an Instagram Business account +
      Meta API token, or a third-party widget (SnapWidget, Elfsight, Behold).
      The portfolio grid below is a curated placeholder in the meantime.
-  5. Social icons — add instagram.png, facebook.png, youtube.png, and
+  5. Social icons â€” add instagram.png, facebook.png, youtube.png, and
      linkedin.png (small square logo files) to the same folder as this
      HTML file. Also swap the LinkedIn href below for the real profile URL.
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abby Amparan — Editorial Stylist &amp; Beauty Industry Professional</title>
+<title>Abby Amparan â€” Editorial Stylist &amp; Beauty Industry Professional</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -173,45 +173,56 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    height:100vh;
-    min-height:560px;
+    height:auto;
+    min-height:0;
     overflow:hidden;
     display:flex;
-    align-items:flex-end;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:clamp(140px,20vw,196px) clamp(24px,6vw,96px) clamp(56px,8vw,84px);
     color:var(--charcoal);
   }
   .hero-content{
     position:relative;
     z-index:2;
-    padding:0 clamp(24px,6vw,96px) clamp(56px,9vw,96px);
-    max-width:980px;
+    padding:0;
+    max-width:720px;
+    margin:0 auto;
   }
   .hero-credit{
-    font-size:.74rem;
+    font-size:.72rem;
     letter-spacing:.16em;
     text-transform:uppercase;
     line-height:1.9;
-    margin-bottom:18px;
+    margin-bottom:16px;
     color:var(--rose-deep);
   }
   .hero-title{
     font-family:var(--font-display);
     font-weight:500;
-    font-size:clamp(2.8rem, 9vw, 6.6rem);
+    font-size:clamp(2.4rem, 6.4vw, 4.4rem);
     letter-spacing:.01em;
-    line-height:.96;
-    margin-bottom:20px;
+    line-height:.98;
+    margin-bottom:16px;
   }
   .hero-tagline{
     font-family:var(--font-display);
     font-style:italic;
     font-weight:400;
-    font-size:clamp(1.05rem, 1.6vw, 1.4rem);
-    max-width:540px;
-    margin-bottom:36px;
+    font-size:clamp(1rem, 1.4vw, 1.22rem);
+    max-width:480px;
+    margin:0 auto 30px;
     color:var(--charcoal-soft);
   }
-  .btn-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-row{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+  .hero-locations{
+    margin-top:22px;
+    font-size:.72rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+  }
   .btn{
     display:inline-flex;
     align-items:center;
@@ -603,16 +614,48 @@
   }
   .booking p{ color:rgba(248,243,236,0.75); margin-bottom:38px; }
   .booking .btn-fill{ padding:18px 44px; font-size:.82rem; }
-  .booking-split{
-    display:flex; justify-content:center; gap:14px; margin-top:22px; flex-wrap:wrap;
+  .booking-buttons{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:6px;
   }
-  .booking-split a{
-    font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
-    padding:12px 22px; border:1px solid var(--line-light); border-radius:999px;
-    transition:background .3s, color .3s;
+  .booking-btn{
+    flex:1 1 280px;
+    max-width:320px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    background:var(--ivory);
+    color:var(--charcoal);
+    padding:24px 28px;
+    border-radius:4px;
+    text-align:left;
+    transition:transform .3s var(--ease), background .3s var(--ease);
   }
-  .booking-split a:hover{ background:var(--ivory); color:var(--charcoal); }
-  .booking-fine{ margin-top:20px; font-size:.72rem; color:rgba(248,243,236,0.5); }
+  .booking-btn:hover{ transform:translateY(-3px); background:var(--rose); }
+  .booking-btn .btn-label{ display:flex; flex-direction:column; gap:5px; }
+  .booking-btn .btn-eyebrow{
+    font-size:.66rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--rose-deep);
+  }
+  .booking-btn .btn-city{
+    font-family:var(--font-display);
+    font-size:1.32rem;
+    font-weight:500;
+    letter-spacing:.01em;
+  }
+  .booking-btn svg{ width:20px; height:20px; flex-shrink:0; transition:transform .3s var(--ease); }
+  .booking-btn:hover svg{ transform:translateX(4px); }
+  @media (max-width:600px){
+    .booking-buttons{ flex-direction:column; align-items:stretch; }
+    .booking-btn{ max-width:420px; width:100%; margin:0 auto; }
+  }
+  .booking-fine{ margin-top:22px; font-size:.72rem; color:rgba(248,243,236,0.5); }
 
   /* ---------- CONTACT / FOOTER (back cover) ---------- */
   .closing{
@@ -692,8 +735,9 @@
       <a href="#booking" class="btn btn-fill">Book Appointment</a>
       <a href="#consultation" class="btn btn-outline-dark">Request Consultation</a>
     </div>
+    <p class="hero-locations">Now booking in New York City &amp; San Antonio</p>
   </div>
-  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+
 </header>
 
 <!-- ============ ABOUT ============ -->
@@ -736,7 +780,7 @@
   </div>
   <div class="cred-strip reveal">
     <div class="stat"><strong>15+</strong><span>Years Industry Experience</span></div>
-    <div class="stat"><strong>2</strong><span>Cities — NYC &amp; San Antonio</span></div>
+    <div class="stat"><strong>2</strong><span>Cities â€” NYC &amp; San Antonio</span></div>
     <div class="stat"><strong>1</strong><span>Maria Nila Pro Team Member</span></div>
   </div>
 </section>
@@ -840,7 +884,7 @@
   <div class="consult-copy reveal">
     <p class="eyebrow">Request a Consultation</p>
     <h2>Tell me about your hair goals.</h2>
-    <p>Share a little about what you're hoping for and I'll follow up to find the right next step — whether that's a full transformation or a subtle refresh.</p>
+    <p>Share a little about what you're hoping for and I'll follow up to find the right next step â€” whether that's a full transformation or a subtle refresh.</p>
 
     <form id="consultForm" action="https://formspree.io/f/mgojkkzg" method="POST">
       <input type="hidden" name="_subject" value="New Consultation Request - Abby Amparan Website">
@@ -875,14 +919,25 @@
   <div class="booking-inner reveal">
     <p class="eyebrow" style="color:var(--rose)">Booking</p>
     <h2>Booking made simple.</h2>
-    <p>One click connects you straight to my live calendar on Vagaro.</p>
-    <!-- REPLACE ME: point this at your actual Vagaro booking page -->
-    <a class="btn btn-fill" href="https://www.vagaro.com/" target="_blank" rel="noopener">Book Online</a>
-    <div class="booking-split">
-      <a href="https://www.vagaro.com/" target="_blank" rel="noopener">Book — New York City</a>
-      <a href="https://www.vagaro.com/" target="_blank" rel="noopener">Book — San Antonio</a>
+    <p>Select your city to book directly on my live Vagaro calendar.</p>
+    <!-- REPLACE ME: swap each href below for that location's real Vagaro booking link -->
+    <div class="booking-buttons">
+      <a class="booking-btn" href="ENTER-SAN-ANTONIO-VAGARO-URL-HERE" target="_blank" rel="noopener">
+        <span class="btn-label">
+          <span class="btn-eyebrow">Click Here to Book</span>
+          <span class="btn-city">San Antonio</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="booking-btn" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVHYBv3Wshpt6VJdpZ4v4tGhXX/4BvZNASIb9h+qGlM+5FAOnuOHKUkkI0lK5wRCJwNjKukTZhHr9ir9mUqEfRDQVFAUxO4Ne4le8IvhLmynKVA3UBbhF0y4N0q94o75gqsYdW9fWC7Ony/2lnE6cZJrbbJezXiaS/8a+xtBLBf3ZAmroRJVL6Javu1ytd1JK4w+hiO78Qlsr4OWc9Vw0XhUNzo7dtD7a/BxRbb3373s4WLWGY98uMqBhoNjPQLOVZ3Mv7kx76vgL0oEilAEyzfngoaNN/MPxhD/0K7GQDGJG5t8yjx+KYCoLDpt+3Csz6aT9kUFKsU1Z88n7EOXbeQL4oGX0U08VhhIzPW3qD0G/UHQ0k4gu/uVIi3CRjN1HrX9EaONXVix1M9UgqGfI4H+21VB+czZhN0XkNdO7m27SVYKAB8KNT4pS4b9Dj7xyeA==" target="_blank" rel="noopener">
+        <span class="btn-label">
+          <span class="btn-eyebrow">Click Here to Book</span>
+          <span class="btn-city">New York City</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
-    <p class="booking-fine">Location-specific links can be wired up once each Vagaro calendar is set.</p>
+    <p class="booking-fine">Each button links to that location's dedicated Vagaro calendar.</p>
   </div>
 </section>
 
