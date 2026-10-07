@@ -132,11 +132,26 @@
   .nav.is-scrolled .nav-links a{ color:var(--charcoal); }
   .nav-links a:hover{ opacity:.65; }
   .nav-cta{
+    background:var(--ivory);
     border:1px solid var(--charcoal) !important;
     padding:9px 20px;
     border-radius:999px;
   }
   .nav.is-scrolled .nav-cta{ border-color:var(--charcoal) !important; }
+  .nav-book-mobile{
+    display:none;
+    margin-left:auto;
+    margin-right:16px;
+    padding:9px 16px;
+    font-size:.7rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    color:var(--charcoal);
+    background:var(--ivory);
+    border:1px solid var(--charcoal);
+    border-radius:999px;
+  }
   .nav-toggle{
     display:none;
     flex-direction:column;
@@ -167,7 +182,15 @@
     }
     .nav.menu-open .nav-links{ transform:translateY(0); }
     .nav.menu-open .nav-links a{ color:var(--charcoal); font-size:1.1rem; }
+    .nav.is-scrolled{ backdrop-filter:none; -webkit-backdrop-filter:none; background:var(--ivory); }
+    .nav-links{ visibility:hidden; pointer-events:none; transition:transform .45s var(--ease), visibility 0s linear .45s; }
+    .nav.menu-open .nav-links{ visibility:visible; pointer-events:auto; transition:transform .45s var(--ease), visibility 0s; }
+    .nav-book-mobile{ display:inline-flex; align-items:center; }
     .nav-toggle{ display:flex; }
+  }
+  @media (max-width:360px){
+    .nav-logo{ font-size:.9rem; letter-spacing:.1em; }
+    .nav-book-mobile{ margin-right:12px; padding:8px 13px; }
   }
 
   /* ---------- HERO ---------- */
@@ -180,7 +203,7 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:clamp(140px,20vw,196px) clamp(24px,6vw,96px) clamp(56px,8vw,84px);
+    padding:clamp(140px,20vw,196px) clamp(24px,6vw,96px) clamp(28px,4vw,48px);
     color:var(--charcoal);
   }
   .hero-content{
@@ -190,6 +213,7 @@
     max-width:720px;
     margin:0 auto;
   }
+  .hero-credit-lead{ font-weight:600; }
   .hero-credit{
     font-size:.72rem;
     letter-spacing:.16em;
@@ -216,6 +240,17 @@
     color:var(--charcoal-soft);
   }
   .btn-row{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+  .btn-col{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .btn-col .btn-fill-dark{ border:1px solid var(--charcoal); }
+  .btn-note{
+    max-width:240px;
+    font-size:.78rem;
+    line-height:1.5;
+    letter-spacing:.02em;
+    text-align:center;
+    color:var(--charcoal-soft);
+  }
+  @media (max-width:600px){ .btn-row{ gap:24px; } }
   .hero-locations{
     margin-top:22px;
     font-size:.72rem;
@@ -270,6 +305,7 @@
 
   /* ---------- ABOUT ---------- */
   .about{
+    padding-top:clamp(40px,5vw,64px);
     display:grid;
     grid-template-columns:.85fr 1fr;
     gap:clamp(32px,6vw,90px);
@@ -303,6 +339,7 @@
     margin-bottom:22px;
   }
   .about-copy p{ margin-bottom:16px; font-size:1rem; color:var(--charcoal-soft); max-width:560px; }
+  .about-copy strong{ font-weight:600; color:var(--charcoal); }
   .about-copy .pull{
     font-family:var(--font-display);
     font-style:italic;
@@ -580,6 +617,27 @@
   }
   .field input:focus, .field textarea:focus{ border-color:var(--rose-deep); outline:none; }
   .field textarea{ resize:vertical; min-height:90px; }
+  .field select{
+    width:100%;
+    border:none;
+    border-bottom:1px solid var(--line);
+    border-radius:0;
+    background-color:transparent;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23241F1B' stroke-width='1.5'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 4px center;
+    -webkit-appearance:none;
+    appearance:none;
+    padding:10px 28px 10px 2px;
+    font-family:inherit;
+    font-size:1rem;
+    color:var(--charcoal);
+    cursor:pointer;
+    transition:border-color .3s;
+  }
+  .field select:focus{ border-color:var(--rose-deep); outline:none; }
+  .field select:invalid{ color:rgba(36,31,27,0.5); }
+  .field select option{ color:var(--charcoal); }
   .form-row-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   .form-note{ font-size:.78rem; color:var(--charcoal-soft); margin-top:14px; opacity:.85; }
   .form-confirm{
@@ -622,6 +680,8 @@
     margin-top:6px;
   }
   .booking-btn{
+    position:relative;
+    overflow:hidden;
     flex:1 1 280px;
     max-width:320px;
     display:flex;
@@ -636,7 +696,7 @@
     transition:transform .3s var(--ease), background .3s var(--ease);
   }
   .booking-btn:hover{ transform:translateY(-3px); background:var(--rose); }
-  .booking-btn .btn-label{ display:flex; flex-direction:column; gap:5px; }
+  .booking-btn .btn-label{ position:relative; z-index:1; display:flex; flex-direction:column; gap:5px; }
   .booking-btn .btn-eyebrow{
     font-size:.66rem;
     letter-spacing:.14em;
@@ -649,11 +709,32 @@
     font-weight:500;
     letter-spacing:.01em;
   }
-  .booking-btn svg{ width:20px; height:20px; flex-shrink:0; transition:transform .3s var(--ease); }
-  .booking-btn:hover svg{ transform:translateX(4px); }
+  .booking-btn .arrow{ position:relative; z-index:1; width:20px; height:20px; flex-shrink:0; transition:transform .3s var(--ease); }
+  .booking-btn:hover .arrow{ transform:translateX(4px); }
+  .booking-btn .skyline{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    color:var(--rose-deep);
+    opacity:.5;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,.32) 52%, #000 78%);
+    mask-image:linear-gradient(90deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,.32) 52%, #000 78%);
+    transition:color .3s var(--ease), opacity .3s var(--ease);
+  }
+  .booking-btn .skyline path{
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    vector-effect:non-scaling-stroke;
+  }
+  .booking-btn:hover .skyline{ color:var(--charcoal); opacity:.3; }
   @media (max-width:600px){
     .booking-buttons{ flex-direction:column; align-items:stretch; }
-    .booking-btn{ max-width:420px; width:100%; margin:0 auto; }
+    .booking-btn{ flex:0 0 auto; min-height:92px; padding:18px 24px; max-width:420px; width:100%; margin:0 auto; }
   }
   .booking-fine{ margin-top:22px; font-size:.72rem; color:rgba(248,243,236,0.5); }
 
@@ -713,6 +794,7 @@
 
 <nav class="nav" id="siteNav">
   <a href="#top" class="nav-logo">ABBY AMPARAN</a>
+  <a href="#booking" class="nav-book-mobile">Book Now</a>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -728,12 +810,18 @@
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-content">
-    <p class="hero-credit">Editorial Stylist &middot; Beauty Industry Professional &middot; Maria Nila Pro Team &middot; Hair Artist &middot; Brand Ambassador</p>
+    <p class="hero-credit"><strong class="hero-credit-lead">Beauty Industry Professional &middot; Brand Ambassador</strong><br>Maria Nila Pro Team &middot; Hair Colorist &amp; Balayage Specialist in NYC &amp; San Antonio</p>
     <h1 class="hero-title">Abby Amparan</h1>
     <p class="hero-tagline">Creating beautiful, customized hair while helping people feel confident, empowered, and seen.</p>
     <div class="btn-row">
-      <a href="#booking" class="btn btn-fill-dark">Book Appointment</a>
-      <a href="#consultation" class="btn btn-outline-dark">Request Consultation</a>
+      <div class="btn-col">
+        <a href="#booking" class="btn btn-fill-dark">Book Appointment</a>
+        <p class="btn-note">Returning client? Book directly online.</p>
+      </div>
+      <div class="btn-col">
+        <a href="#consultation" class="btn btn-outline-dark">Request Consultation</a>
+        <p class="btn-note">New client, color correction, or extensions? Start with a consultation.</p>
+      </div>
     </div>
     <p class="hero-locations">Now booking in New York City &amp; San Antonio</p>
   </div>
@@ -755,7 +843,7 @@
     <h2>Hi, I'm Abby.</h2>
     <p>I'm a hairstylist, colorist, educator, and brand ambassador with over 15 years of experience helping people feel confident through beautiful, customized hair.</p>
     <p>My career has taken me from salon floors to editorial projects, advanced education programs, and working alongside some of the most respected brands in the beauty industry. Today, I proudly serve clients in both New York City and San Antonio while representing Maria Nila as a member of their Pro Team.</p>
-    <p>I specialize in lived-in blondes, balayage, color corrections, extensions, and precision haircuts designed to complement each client's lifestyle and individuality.</p>
+    <p>I specialize in <strong>lived-in blondes</strong>, <strong>balayage</strong>, <strong>color corrections</strong>, <strong>extensions</strong>, and <strong>precision haircuts</strong> designed to complement each client's lifestyle and individuality.</p>
     <p>When I'm not behind the chair, you'll usually find me running scenic trails, playing tennis, traveling, exploring new cities, spending time with family and friends, or enjoying a great conversation over coffee. I believe beauty, confidence, wellness, and personal growth all go hand in hand.</p>
     <p class="pull">Whether you're looking for a complete transformation, subtle enhancement, or simply a stylist who truly listens, I'm honored you're here and I look forward to meeting you.</p>
   </div>
@@ -903,6 +991,14 @@
         <input type="email" id="cf-email" name="email" required>
       </div>
       <div class="field">
+        <label for="cf-city">City</label>
+        <select id="cf-city" name="city" required>
+          <option value="" disabled selected>Select a city</option>
+          <option value="New York City">New York City</option>
+          <option value="San Antonio">San Antonio</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="cf-comments">Comments / Hair Goals</label>
         <textarea id="cf-comments" name="comments" rows="4"></textarea>
       </div>
@@ -922,19 +1018,21 @@
     <p>Select your city to book directly on my live Vagaro calendar.</p>
     <!-- REPLACE ME: swap each href below for that location's real Vagaro booking link -->
     <div class="booking-buttons">
-      <a class="booking-btn" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVHeLrRN+ihCl2JUwSHNEtnqefUxYvV6RgSc+rwx7y+1ESL/RC8j425NZU46dyp0p0hm3dacFmeT5oCv8/fz4397vUmMsIreWOR2MxyR/HyVsgjkYuUXHaO/3R8HfEcPQUUtRdRbMpbnBMGcLVCsXwBtqXrGIfaANs0/uafQYUzMP8RM/Q72PiP5NfYVSQHTWpatMrtK1O4C+YCyUH6Dv46WK9nzMgCh2Tgs90BQlXossx8o8o7XwInOdDoEw2xRbdF+Dh7AhVkteZTt+dddEVv10Xebbg8RVsb5llwEFek9DnsgwhYZGOvX05ZAj2GHt+4zcDNw4R1eF3Ft6Jz967rVjn/pfQ+DOOh9TgFrnxLYfRTz04YUiBnk7tqvTTnlU1Bky1bYjPB2MerVz9AxpQKIW+Qi40bRYPOwXiFNxgExF8/Kms9P85GGb45XdxDZS2NqbqBgJfICPbbfMkte7sHBtgmlFT50hYuTRRe16wRqs" target="_blank" rel="noopener">
-        <span class="btn-label">
-          <span class="btn-eyebrow">Click Here to Book</span>
-          <span class="btn-city">San Antonio</span>
-        </span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
       <a class="booking-btn" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVHYBv3Wshpt6VJdpZ4v4tGhXX/4BvZNASIb9h+qGlM+5FAOnuOHKUkkI0lK5wRCJwNjKukTZhHr9ir9mUqEfRDQVFAUxO4Ne4le8IvhLmynKVA3UBbhF0y4N0q94o75gqsYdW9fWC7Ony/2lnE6cZJrbbJezXiaS/8a+xtBLBf3ZAmroRJVL6Javu1ytd1JK4w+hiO78Qlsr4OWc9Vw0XhUNzo7dtD7a/BxRbb3373s4WLWGY98uMqBhoNjPQLOVZ3Mv7kx76vgL0oEilAEyzfngoaNN/MPxhD/0K7GQDGJG5t8yjx+KYCoLDpt+3Csz6aT9kUFKsU1Z88n7EOXbeQL4oGX0U08VhhIzPW3qD0G/UHQ0k4gu/uVIi3CRjN1HrX9EaONXVix1M9UgqGfI4H+21VB+czZhN0XkNdO7m27SVYKAB8KNT4pS4b9Dj7xyeA==" target="_blank" rel="noopener">
+        <svg class="skyline" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><path d="M0 118H400 M0 118V94H24V118 M30 118V76H40V70H52V118 M62 118V70Q76 42 90 70V118 M67 66Q76 48 85 66 M76 46V34 M96 118V88H112V118 M118 118V88H125V72H130V58H134V46H142V58H146V72H151V88H158V118 M138 46V28 M164 118V74H184V118 M170 84H178 M170 92H178 M170 100H178 M190 118V90H206V118 M218 118V56L234 42L250 56V118 M234 24V118 M256 118V80H274V118 M280 118V68H286V62H300V68H306V118 M288 78H298 M288 86H298 M288 94H298 M312 118V90H332V118 M338 118V72H354V118 M346 72V58 M360 118V96H378V118 M384 118V102H400V118"/></svg>
         <span class="btn-label">
           <span class="btn-eyebrow">Click Here to Book</span>
           <span class="btn-city">New York City</span>
         </span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="booking-btn" href="https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVHeLrRN+ihCl2JUwSHNEtnqefUxYvV6RgSc+rwx7y+1ESL/RC8j425NZU46dyp0p0hm3dacFmeT5oCv8/fz4397vUmMsIreWOR2MxyR/HyVsgjkYuUXHaO/3R8HfEcPQUUtRdRbMpbnBMGcLVCsXwBtqXrGIfaANs0/uafQYUzMP8RM/Q72PiP5NfYVSQHTWpatMrtK1O4C+YCyUH6Dv46WK9nzMgCh2Tgs90BQlXossx8o8o7XwInOdDoEw2xRbdF+Dh7AhVkteZTt+dddEVv10Xebbg8RVsb5llwEFek9DnsgwhYZGOvX05ZAj2GHt+4zcDNw4R1eF3Ft6Jz967rVjn/pfQ+DOOh9TgFrnxLYfRTz04YUiBnk7tqvTTnlU1Bky1bYjPB2MerVz9AxpQKIW+Qi40bRYPOwXiFNxgExF8/Kms9P85GGb45XdxDZS2NqbqBgJfICPbbfMkte7sHBtgmlFT50hYuTRRe16wRqs" target="_blank" rel="noopener">
+        <svg class="skyline" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><path d="M0 118H400 M0 118V98H20V118 M26 118V90H40V118 M46 118V90H54Q55 78 62 78Q66 68 72 64Q78 68 82 78Q89 78 90 90H98V118 M65 118V102Q72 92 79 102V118 M68 80H76V90H68Z M50 110V102Q53 98 56 102V110Z M88 110V102Q91 98 94 102V110Z M104 118V84H122V78H128V118 M138 118V60L170 34V118 M148 118V52 M160 118V43 M176 118V70H196V118 M182 78H190 M182 86H190 M182 94H190 M202 118V92H216V118 M258 118L259 62 M266 118L265 62 M245 54Q262 44 279 54Q262 63 245 54Z M256 47V38H268V47 M262 38V20 M286 118V86H304V118 M310 118V72H318V66H332V72H338V118 M344 118V90H362V118 M368 118V98H388V118 M392 118V104H400V118"/></svg>
+        <span class="btn-label">
+          <span class="btn-eyebrow">Click Here to Book</span>
+          <span class="btn-city">San Antonio</span>
+        </span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
     <p class="booking-fine">Each button links to that location's dedicated Vagaro calendar.</p>
